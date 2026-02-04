@@ -196,3 +196,90 @@ scrollTopBtn.onclick = () => {
         behavior: 'smooth'
     });
 };
+
+// Access Request Modal Logic
+const accessModal = document.getElementById('accessModal');
+const accessForm = document.getElementById('accessForm');
+const closeAccessModal = document.getElementById('closeModal');
+const heroViewCvBtn = document.getElementById('heroViewCvBtn');
+const footerViewCvBtn = document.getElementById('footerViewCvBtn');
+const formStatus = document.getElementById('formStatus');
+
+// Open Modal
+function openAccessModal() {
+    accessModal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+}
+
+if (heroViewCvBtn) heroViewCvBtn.onclick = openAccessModal;
+if (footerViewCvBtn) footerViewCvBtn.onclick = openAccessModal;
+
+// Close Modal
+function closeAccessModalFunc() {
+    accessModal.classList.remove('show');
+    document.body.style.overflow = 'auto';
+    formStatus.innerText = '';
+    formStatus.className = 'form-status';
+}
+
+if (closeAccessModal) closeAccessModal.onclick = closeAccessModalFunc;
+
+window.addEventListener('click', (e) => {
+    if (e.target === accessModal) {
+        closeAccessModalFunc();
+    }
+});
+
+// Handle Form Submit
+if (accessForm) {
+    accessForm.onsubmit = async (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById('requesterEmail').value;
+        const reason = document.getElementById('requestReason').value;
+        const submitBtn = accessForm.querySelector('button[type="submit"]');
+
+        // Basic Validation
+        if (!email || !reason) {
+            formStatus.innerText = 'Please fill in all fields.';
+            formStatus.className = 'form-status error';
+            return;
+        }
+
+        // Loading State
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'Sending...';
+        formStatus.innerText = '';
+
+        try {
+            const response = await fetch('/api/request-cv', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, reason })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                formStatus.innerText = 'Request sent successfully! Check your email for confirmation.';
+                formStatus.className = 'form-status success';
+                accessForm.reset();
+                setTimeout(() => {
+                    closeAccessModalFunc();
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = 'Send Request';
+                }, 3000);
+            } else {
+                throw new Error(data.message || 'Failed to send request.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            formStatus.innerText = 'Error: ' + error.message;
+            formStatus.className = 'form-status error';
+            submitBtn.disabled = false;
+            submitBtn.innerText = 'Send Request';
+        }
+    };
+}
