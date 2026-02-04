@@ -14,9 +14,15 @@ export default async function handler(req, res) {
     const { EMAIL_USER, EMAIL_PASS, OWNER_EMAIL, SITE_URL } = process.env;
 
     // Basic validation for env vars (helpful for debugging)
-    if (!EMAIL_USER || !EMAIL_PASS || !OWNER_EMAIL || !SITE_URL) {
-        console.error('Missing environment variables');
-        return res.status(500).json({ message: 'Server configuration error. Please contact the owner.' });
+    const missingVars = [];
+    if (!EMAIL_USER) missingVars.push('EMAIL_USER');
+    if (!EMAIL_PASS) missingVars.push('EMAIL_PASS');
+    if (!OWNER_EMAIL) missingVars.push('OWNER_EMAIL');
+    if (!SITE_URL) missingVars.push('SITE_URL');
+
+    if (missingVars.length > 0) {
+        console.error('Missing environment variables:', missingVars.join(', '));
+        return res.status(500).json({ message: `Server configuration error. Missing variables: ${missingVars.join(', ')}` });
     }
 
     const transporter = nodemailer.createTransport({
