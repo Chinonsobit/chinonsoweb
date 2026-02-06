@@ -288,17 +288,7 @@ if (accessForm) {
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. Typed.js Initialization
-    if (document.querySelector('.typed-text')) {
-        const typed = new Typed('.typed-text', {
-            strings: ['Economist', 'Policy Researcher', 'Data Analyst', 'M&E Specialist'],
-            typeSpeed: 50,
-            backSpeed: 30,
-            backDelay: 2000,
-            loop: true,
-            cursorChar: '|'
-        });
-    }
+    /* Typed.js Removed */
 
     // 2. ScrollReveal Initialization
     const sr = ScrollReveal({
@@ -316,27 +306,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sr.reveal('.pub-item', { interval: 200 });
     sr.reveal('.section-header', { origin: 'top' });
 
-    // 3. Custom Cursor Logic
-    const cursor = document.getElementById('cursor');
-    const follower = document.getElementById('cursor-follower');
-    // Select all interactive elements
-    const links = document.querySelectorAll('a, button, .skill-mini-card, .pub-item, .exp-card, .tool-icon-box');
-
-    if (cursor && follower) {
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
-            follower.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
-        });
-
-        links.forEach(link => {
-            link.addEventListener('mouseenter', () => {
-                document.body.classList.add('hovering');
-            });
-            link.addEventListener('mouseleave', () => {
-                document.body.classList.remove('hovering');
-            });
-        });
-    }
+    /* Custom Cursor Removed */
 
     // 4. Particles.js Initialization
     if (document.getElementById('particles-js')) {
