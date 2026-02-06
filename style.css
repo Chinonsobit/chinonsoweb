@@ -951,3 +951,93 @@ h3,
 .form-status.error {
     color: #ef4444;
 }
+
+/* --- Visual Enhancements --- */
+
+/* 1. Particles Container */
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    /* Behind content but above background */
+    pointer-events: none;
+    /* Allow clicking through */
+}
+
+/* Ensure hero content is above particles */
+.hero-content {
+    z-index: 2;
+    position: relative;
+}
+
+/* 2. Typewriter Effect */
+.typed-text {
+    color: var(--primary-light);
+    font-weight: 700;
+}
+
+.typed-cursor {
+    color: var(--primary);
+    font-size: 1.1rem;
+}
+
+/* 3. Custom Cursor */
+#cursor {
+    width: 8px;
+    height: 8px;
+    background: var(--primary);
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s;
+    mix-blend-mode: exclusion;
+}
+
+#cursor-follower {
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s, width 0.3s, height 0.3s, background 0.3s;
+    mix-blend-mode: exclusion;
+}
+
+/* Cursor Hover State */
+body.hovering #cursor-follower {
+    width: 50px;
+    height: 50px;
+    background: rgba(59, 130, 246, 0.2);
+    border-color: transparent;
+}
+
+/* Hide default cursor only on non-touch devices if desired, 
+   but usually better to keep default pointer for usability 
+   and just have the follower as decoration. 
+   Uncomment below to hide default cursor: 
+*/
+@media (hover: hover) and (pointer: fine) {
+    /* body { cursor: none; } */
+    /* a, button { cursor: none; } */
+}
+
+/* Mobile: Hide custom cursor */
+@media (max-width: 768px) {
+
+    #cursor,
+    #cursor-follower {
+        display: none;
+    }
+}

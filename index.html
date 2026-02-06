@@ -32,9 +32,16 @@
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;500;600&display=swap"
         rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </head>
 
 <body>
+    <!-- Custom Cursor -->
+    <div id="cursor"></div>
+    <div id="cursor-follower"></div>
+
     <!-- Premium Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -60,6 +67,7 @@
     </nav>
     <!-- Hero Section -->
     <header id="home" class="hero">
+        <div id="particles-js"></div>
         <div class="hero-content container">
             <div class="hero-info">
                 <div class="profile-left">
@@ -67,10 +75,12 @@
                         alt="Nwanosike Chinonso Amos" class="profile-img">
                 </div>
                 <h1 class="hero-title">Nwanosike Chinonso Amos</h1>
-                <p class="hero-subtitle">Economist | Policy Researcher | Data Analyst | M&E Specialist</p>
-                <p class="hero-tagline">I am an emerging economist with a strong background in economic policy analysis,
+                <p class="hero-subtitle">I am a <span class="typed-text"></span></p>
+                <p class="hero-tagline">I am an emerging economist with a strong background in economic policy
+                    analysis,
                     fiscal governance, trade, and development research. My work focuses on generating evidence-based
-                    insights that support sound policymaking, institutional strengthening, and inclusive economic growth
+                    insights that support sound policymaking, institutional strengthening, and inclusive economic
+                    growth
                     in Nigeria and Africa.</p>
 
                 <div class="hero-btns">
@@ -90,15 +100,20 @@
             </div>
             <div class="about-content">
                 <div class="about-text-card glass">
-                    <p>I am an economist with academic training and practical experience in economic research, policy
+                    <p>I am an economist with academic training and practical experience in economic research,
+                        policy
                         analysis, and institutional reporting. I hold a Bachelor’s degree in Economics from the
-                        University of Nigeria Nsukka and have worked on policy relevant research projects for government
+                        University of Nigeria Nsukka and have worked on policy relevant research projects for
+                        government
                         institutions, consulting firms, and development focused initiatives.</p>
                     <p>My research interests include macroeconomic policy, foreign direct investment, trade and
-                        industrial policy, public finance, labor economics, and development economics. I am particularly
-                        interested in using empirical methods to analyze real world policy challenges and contribute to
+                        industrial policy, public finance, labor economics, and development economics. I am
+                        particularly
+                        interested in using empirical methods to analyze real world policy challenges and contribute
+                        to
                         evidence-based decision making.</p>
-                    <p>Beyond research, I am actively involved in professional development programs, policy dialogues,
+                    <p>Beyond research, I am actively involved in professional development programs, policy
+                        dialogues,
                         and economic capacity building initiatives.</p>
                 </div>
             </div>
@@ -153,7 +168,8 @@
                 <h2 class="title">Publications & Research</h2>
             </div>
             <div class="pub-intro">
-                <p>My research and writing focus on empirical economic analysis and policy relevant issues in Nigeria
+                <p>My research and writing focus on empirical economic analysis and policy relevant issues in
+                    Nigeria
                     and developing economies.</p>
             </div>
             <div class="pub-list">
@@ -161,7 +177,8 @@
                     <div class="pub-icon"><i data-lucide="file-text"></i></div>
                     <div class="pub-info">
                         <h3>Impact of Foreign Direct Investment Inflows on Economic Performance in Nigeria</h3>
-                        <p>Journal article examining the short and long run effects of FDI using time series econometric
+                        <p>Journal article examining the short and long run effects of FDI using time series
+                            econometric
                             methods.</p>
                         <a href="#" class="pub-link">Read More <i data-lucide="arrow-right"></i></a>
                     </div>
@@ -170,7 +187,8 @@
                     <div class="pub-icon"><i data-lucide="briefcase"></i></div>
                     <div class="pub-info">
                         <h3>Policy Briefs on Trade, Industrial Policy, and Fiscal Reform</h3>
-                        <p>Short policy focused documents aimed at informing public sector stakeholders and development
+                        <p>Short policy focused documents aimed at informing public sector stakeholders and
+                            development
                             partners.</p>
                         <a href="#" class="pub-link">Read More <i data-lucide="arrow-right"></i></a>
                     </div>
@@ -284,7 +302,8 @@
                 <div class="event-card glass" onclick="showProjects('certifications')">
                     <i data-lucide="certificate"></i>
                     <h3>Certifications</h3>
-                    <p>Official certifications in data tools, econometric methods, and specialized industry standards.
+                    <p>Official certifications in data tools, econometric methods, and specialized industry
+                        standards.
                     </p>
                 </div>
             </div>
@@ -297,7 +316,8 @@
             <div class="cv-card glass">
                 <div class="cv-info">
                     <h2>Ready to review my full profile?</h2>
-                    <p>Download my comprehensive CV covering education, certifications, and professional engagements.
+                    <p>Download my comprehensive CV covering education, certifications, and professional
+                        engagements.
                     </p>
                 </div>
                 <div class="cv-actions">

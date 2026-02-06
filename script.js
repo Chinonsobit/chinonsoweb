@@ -283,3 +283,100 @@ if (accessForm) {
         }
     };
 }
+
+/* --- Visual Enhancements Initialization --- */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    // 1. Typed.js Initialization
+    if (document.querySelector('.typed-text')) {
+        const typed = new Typed('.typed-text', {
+            strings: ['Economist', 'Policy Researcher', 'Data Analyst', 'M&E Specialist'],
+            typeSpeed: 50,
+            backSpeed: 30,
+            backDelay: 2000,
+            loop: true,
+            cursorChar: '|'
+        });
+    }
+
+    // 2. ScrollReveal Initialization
+    const sr = ScrollReveal({
+        origin: 'bottom',
+        distance: '60px',
+        duration: 2500,
+        delay: 400,
+        // reset: true // Animations repeat on scroll up
+    });
+
+    sr.reveal('.hero-title, .hero-tagline, .hero-btns', { interval: 200 });
+    sr.reveal('.about-text-card', { origin: 'left' });
+    sr.reveal('.exp-card', { interval: 200 });
+    sr.reveal('.skill-group', { interval: 200 });
+    sr.reveal('.pub-item', { interval: 200 });
+    sr.reveal('.section-header', { origin: 'top' });
+
+    // 3. Custom Cursor Logic
+    const cursor = document.getElementById('cursor');
+    const follower = document.getElementById('cursor-follower');
+    // Select all interactive elements
+    const links = document.querySelectorAll('a, button, .skill-mini-card, .pub-item, .exp-card, .tool-icon-box');
+
+    if (cursor && follower) {
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+            follower.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+        });
+
+        links.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                document.body.classList.add('hovering');
+            });
+            link.addEventListener('mouseleave', () => {
+                document.body.classList.remove('hovering');
+            });
+        });
+    }
+
+    // 4. Particles.js Initialization
+    if (document.getElementById('particles-js')) {
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#ffffff" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.1, "random": false },
+                "size": { "value": 3, "random": true },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.1,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 1.5,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": { "enable": true, "mode": "grab" },
+                    "onclick": { "enable": true, "mode": "push" },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": { "distance": 140, "line_linked": { "opacity": 1 } },
+                    "push": { "particles_nb": 4 }
+                }
+            },
+            "retina_detect": true
+        });
+    }
+});
