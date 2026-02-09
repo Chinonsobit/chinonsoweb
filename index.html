@@ -31,9 +31,15 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;500;600&display=swap"
         rel="stylesheet">
+
+    <!-- External Libraries -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <!-- Sanity Client CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@sanity/client@6.12.0/dist/index.umd.js"></script>
+    <script src="sanityClient.js"></script>
 </head>
 
 <body>
@@ -69,9 +75,11 @@
                     <img src="https://res.cloudinary.com/dttoqt6w7/image/upload/v1765420304/Chinonso_Amos_s1uv1m.png"
                         alt="Nwanosike Chinonso Amos" class="profile-img">
                 </div>
-                <h1 class="hero-title">Nwanosike Chinonso Amos</h1>
-                <p class="hero-subtitle">Economist | Policy Researcher | Data Analyst | M&E Specialist</p>
-                <p class="hero-tagline">I am an emerging economist with a strong background in economic policy
+                <h1 class="hero-title" id="cms-full-name">Nwanosike Chinonso Amos</h1>
+                <p class="hero-subtitle" id="cms-hero-title">Economist | Policy Researcher | Data Analyst | M&E
+                    Specialist</p>
+                <p class="hero-tagline" id="cms-tagline">I am an emerging economist with a strong background in economic
+                    policy
                     analysis,
                     fiscal governance, trade, and development research. My work focuses on generating evidence-based
                     insights that support sound policymaking, institutional strengthening, and inclusive economic
@@ -94,22 +102,8 @@
                 <h2 class="title">About Me</h2>
             </div>
             <div class="about-content">
-                <div class="about-text-card glass">
-                    <p>I am an economist with academic training and practical experience in economic research,
-                        policy
-                        analysis, and institutional reporting. I hold a Bachelor’s degree in Economics from the
-                        University of Nigeria Nsukka and have worked on policy relevant research projects for
-                        government
-                        institutions, consulting firms, and development focused initiatives.</p>
-                    <p>My research interests include macroeconomic policy, foreign direct investment, trade and
-                        industrial policy, public finance, labor economics, and development economics. I am
-                        particularly
-                        interested in using empirical methods to analyze real world policy challenges and contribute
-                        to
-                        evidence-based decision making.</p>
-                    <p>Beyond research, I am actively involved in professional development programs, policy
-                        dialogues,
-                        and economic capacity building initiatives.</p>
+                <div class="about-text-card glass" id="cms-about-content">
+                    <p>Loading about information...</p>
                 </div>
             </div>
         </div>
@@ -123,34 +117,9 @@
                 <h2 class="title">Selected Experience & Projects</h2>
             </div>
 
-            <div class="experience-grid">
-                <div class="exp-card glass">
-                    <div class="exp-header">
-                        <span class="exp-comp">Preston Consults Limited</span>
-                        <span class="exp-role">Research Intern</span>
-                    </div>
-                    <p>Assisted in conducting economic and policy research to support governance and public sector
-                        reforms. Co-developed analytical sections of national and institutional reports, including
-                        implementation and impact evaluation documents for government projects.</p>
-                </div>
-
-                <div class="exp-card glass">
-                    <div class="exp-header">
-                        <span class="exp-comp">FGIP</span>
-                        <span class="exp-role">Fiscal Governance & Institutions</span>
-                    </div>
-                    <p>Contributed to the preparation of implementation completion and impact evaluation reports by
-                        analyzing fiscal and institutional performance indicators.</p>
-                </div>
-
-                <div class="exp-card glass">
-                    <div class="exp-header">
-                        <span class="exp-comp">Trade & Investment</span>
-                        <span class="exp-role">Project Analyst</span>
-                    </div>
-                    <p>Worked on analytical reports examining Nigeria’s trade performance, non-oil exports, and
-                        investment trends, with policy focused recommendations.</p>
-                </div>
+            <div class="experience-grid" id="cms-experience-grid">
+                <!-- Data will be injected here -->
+                <div class="exp-card glass loading">Loading experience...</div>
             </div>
         </div>
     </section>
@@ -167,27 +136,9 @@
                     Nigeria
                     and developing economies.</p>
             </div>
-            <div class="pub-list">
-                <div class="pub-item glass">
-                    <div class="pub-icon"><i data-lucide="file-text"></i></div>
-                    <div class="pub-info">
-                        <h3>Impact of Foreign Direct Investment Inflows on Economic Performance in Nigeria</h3>
-                        <p>Journal article examining the short and long run effects of FDI using time series
-                            econometric
-                            methods.</p>
-                        <a href="#" class="pub-link">Read More <i data-lucide="arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="pub-item glass">
-                    <div class="pub-icon"><i data-lucide="briefcase"></i></div>
-                    <div class="pub-info">
-                        <h3>Policy Briefs on Trade, Industrial Policy, and Fiscal Reform</h3>
-                        <p>Short policy focused documents aimed at informing public sector stakeholders and
-                            development
-                            partners.</p>
-                        <a href="#" class="pub-link">Read More <i data-lucide="arrow-right"></i></a>
-                    </div>
-                </div>
+            <div class="pub-list" id="cms-publications-list">
+                <!-- Data will be injected here -->
+                <div class="pub-item glass loading">Loading publications...</div>
             </div>
         </div>
     </section>
@@ -200,78 +151,9 @@
                 <h2 class="title">Skills & Expertise</h2>
             </div>
 
-            <div class="skills-container">
-                <!-- Economic & Policy -->
-                <div class="skill-group">
-                    <h3>Economic & Policy Analysis</h3>
-                    <div class="skill-cards">
-                        <div class="skill-mini-card" onclick="showProjects('macro')">
-                            <i data-lucide="globe"></i>
-                            <span>Macroeconomic Policy</span>
-                        </div>
-                        <div class="skill-mini-card" onclick="showProjects('trade')">
-                            <i data-lucide="bar-chart-3"></i>
-                            <span>Trade & Industrial</span>
-                        </div>
-                        <div class="skill-mini-card" onclick="showProjects('finance')">
-                            <i data-lucide="landmark"></i>
-                            <span>Public Finance</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Quantitative -->
-                <div class="skill-group">
-                    <h3>Quantitative & Research</h3>
-                    <div class="skill-cards">
-                        <div class="skill-mini-card" onclick="showProjects('econometric')">
-                            <i data-lucide="trending-up"></i>
-                            <span>Econometric Modeling</span>
-                        </div>
-                        <div class="skill-mini-card" onclick="showProjects('impact')">
-                            <i data-lucide="check-circle-2"></i>
-                            <span>Impact Evaluation</span>
-                        </div>
-                        <div class="skill-mini-card" onclick="showProjects('data')">
-                            <i data-lucide="pie-chart"></i>
-                            <span>Data Analysis</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tools -->
-                <div class="skill-group">
-                    <h3>Tools & Technologies</h3>
-                    <div class="tools-grid-icons">
-                        <div class="tool-icon-box" onclick="showProjects('stata')" title="Stata">
-                            <span>Stata</span>
-                        </div>
-                        <div class="tool-icon-box" onclick="showProjects('r')" title="R Programming">
-                            <span>R</span>
-                        </div>
-                        <div class="tool-icon-box" onclick="showProjects('sql')" title="SQL">
-                            <span>SQL</span>
-                        </div>
-                        <div class="tool-icon-box" onclick="showProjects('powerbi')" title="PowerBI">
-                            <span>PowerBI</span>
-                        </div>
-                        <div class="tool-icon-box" onclick="showProjects('tableau')" title="Tableau">
-                            <span>Tableau</span>
-                        </div>
-                        <div class="tool-icon-box" onclick="showProjects('latex')" title="Latex">
-                            <span>Latex</span>
-                        </div>
-                        <div class="tool-icon-box" onclick="showProjects('python')" title="Python">
-                            <span>Python</span>
-                        </div>
-                        <div class="tool-icon-box" onclick="showProjects('excel')" title="Excel">
-                            <span>Excel</span>
-                        </div>
-                        <div class="tool-icon-box" onclick="showProjects('word')" title="Word">
-                            <span>Word</span>
-                        </div>
-                    </div>
-                </div>
+            <div class="skills-container" id="cms-skills-container">
+                <!-- Data will be injected here -->
+                <p>Loading skills...</p>
             </div>
         </div>
     </section>
@@ -283,24 +165,9 @@
                 <span class="sub-title">Professional Recognition</span>
                 <h2 class="title">Trainings, Awards & Certifications</h2>
             </div>
-            <div class="events-grid">
-                <div class="event-card glass" onclick="showProjects('trainings')">
-                    <i data-lucide="award"></i>
-                    <h3>Professional Trainings</h3>
-                    <p>Documenting continuous professional development and specialized workshops.</p>
-                </div>
-                <div class="event-card glass" onclick="showProjects('awards')">
-                    <i data-lucide="medal"></i>
-                    <h3>Awards & Honors</h3>
-                    <p>Recognitions for excellence in research, academic performance, and professional impact.</p>
-                </div>
-                <div class="event-card glass" onclick="showProjects('certifications')">
-                    <i data-lucide="certificate"></i>
-                    <h3>Certifications</h3>
-                    <p>Official certifications in data tools, econometric methods, and specialized industry
-                        standards.
-                    </p>
-                </div>
+            <div class="events-grid" id="cms-awards-grid">
+                <!-- Data will be injected here -->
+                <div class="event-card glass">Loading awards...</div>
             </div>
         </div>
     </section>
@@ -353,7 +220,7 @@
                 </div>
                 <div class="contact-form-dummy glass">
                     <h3>Additional Services</h3>
-                    <ul>
+                    <ul id="cms-services-list">
                         <li>Video Editing</li>
                         <li>Transcription (Audio/Video)</li>
                         <li>Academic Engagement</li>
