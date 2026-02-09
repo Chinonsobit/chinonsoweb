@@ -22,13 +22,12 @@ let client = null;
  * Requires @sanity/client to be available globally or imported
  */
 function initSanityClient() {
-    if (typeof SanityClient !== 'undefined') {
-        client = new SanityClient(CMS_CONFIG);
-    } else if (window.sanityClient) {
-        // Some CDN versions expose it this way
+    if (typeof window.sanityClient === 'function') {
         client = window.sanityClient(CMS_CONFIG);
+    } else if (typeof SanityClient === 'function') {
+        client = new SanityClient(CMS_CONFIG);
     } else {
-        console.warn('Sanity client library not found. Please ensure CDN script is loaded.');
+        console.error('Sanity client library not found. Check if the script tag in index.html is correct.');
     }
 }
 

@@ -40,6 +40,9 @@ async function initCMSPortfolio() {
 
     if (!data) {
         console.error('Failed to load CMS data. Falling back to static or showing error.');
+        document.querySelectorAll('.loading').forEach(el => {
+            el.innerHTML = '<p class="error">Failed to load content. Please try refreshing.</p>';
+        });
         return;
     }
 
