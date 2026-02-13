@@ -1,72 +1,59 @@
 /**
- * Sanity Client Configuration
- * This file handles fetching data from the Sanity.io CMS.
+ * Sanity Client Configuration (Native Fetch Version)
+ * This file handles fetching data from the Sanity.io CMS using native fetch.
  */
-
-// Since we're using a simple script tag setup in index.html, 
-// we'll assume the Sanity client library is loaded via CDN or bundle.
-// If you're using a build tool, you'd import {createClient} from '@sanity/client'
 
 const CMS_CONFIG = {
-    projectId: 'ss11hqc9', // Replace with your Sanity project ID
+    projectId: 'ss11hqc9',
     dataset: 'production',
-    useCdn: true, // `false` if you want to ensure fresh data on every load
-    apiVersion: '2023-05-03', // Use current date for latest API version
+    useCdn: true,
+    apiVersion: '2023-05-03',
 };
-
-// Placeholder for client - will be initialized in script.js or here
-let client = null;
-
-/**
- * Initialize Sanity Client
- * Requires @sanity/client to be available globally or imported
- */
-function initSanityClient() {
-    if (typeof window.sanityClient === 'function') {
-        client = window.sanityClient(CMS_CONFIG);
-    } else if (typeof SanityClient === 'function') {
-        client = new SanityClient(CMS_CONFIG);
-    } else {
-        console.error('Sanity client library not found. Check if the script tag in index.html is correct.');
-    }
-}
 
 /**
  * Helper to get image URLs from Sanity
  */
 function urlFor(source) {
     if (!source) return '';
-    // This usually requires @sanity/image-url, but for a simple setup 
-    // we can construct a basic URL or use a simplified helper
     const project = CMS_CONFIG.projectId;
     const dataset = CMS_CONFIG.dataset;
 
     if (source.asset && source.asset._ref) {
         const ref = source.asset._ref;
-        const [_file, id, size, ext] = ref.split('-');
-        return `https://cdn.sanity.io/images/${project}/${dataset}/${id}-${size}.${ext}`;
+        const parts = ref.split('-');
+        if (parts.length >= 4) {
+            const id = parts[1];
+            const size = parts[2];
+            const ext = parts[3];
+            return `https://cdn.sanity.io/images/${project}/${dataset}/${id}-${size}.${ext}`;
+        }
     }
     return '';
 }
 
 /**
- * Fetch all content for the portfolio
+ * Fetch data using native fetch API
  */
 async function fetchPortfolioData() {
-    if (!client) initSanityClient();
-    if (!client) return null;
-
-    const query = `{
+    const query = encodeURIComponent(`{
         "profile": *[_type == "profile"][0],
         "about": *[_type == "about"][0],
         "experiences": *[_type == "experience"] | order(order asc),
         "publications": *[_type == "publication"] | order(order asc),
         "skills": *[_type == "skill"] | order(order asc),
         "awards": *[_type == "award"] | order(order asc)
-    }`;
+    }`);
+
+    const url = `https://${CMS_CONFIG.projectId}.api.sanity.io/v${CMS_CONFIG.apiVersion}/data/query/${CMS_CONFIG.dataset}?query=${query}`;
 
     try {
-        return await client.fetch(query);
+        const response = await fetch(url);
+        if (!response.ok) {
+            const errorBody = await response.text();
+            throw new Error(`HTTP error! status: ${response.status}, body: ${errorBody}`);
+        }
+        const data = await response.json();
+        return data.result;
     } catch (error) {
         console.error('Error fetching from Sanity:', error);
         return null;

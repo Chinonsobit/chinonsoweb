@@ -36,36 +36,53 @@ let projectData = {};
  */
 async function initCMSPortfolio() {
     console.log('Fetching CMS content...');
-    const data = await window.CMS.fetchData();
 
-    if (!data) {
-        console.error('Failed to load CMS data. Falling back to static or showing error.');
+    if (!window.CMS) {
+        console.error('CMS Configuration (sanityClient.js) failed to load.');
         document.querySelectorAll('.loading').forEach(el => {
-            el.innerHTML = '<p class="error">Failed to load content. Please try refreshing.</p>';
+            el.innerHTML = '<p class="error">Configuration error. Please check if sanityClient.js is missing.</p>';
         });
         return;
     }
 
-    // 1. Render Profile Info (Hero & Global)
-    renderProfile(data.profile);
+    try {
+        const data = await window.CMS.fetchData();
+        console.log('CMS Data Received:', data);
 
-    // 2. Render About Section
-    renderAbout(data.about);
+        if (!data) {
+            console.error('Failed to load CMS data. Data is null or undefined.');
+            document.querySelectorAll('.loading').forEach(el => {
+                el.innerHTML = '<p class="error">Failed to load content. Please try refreshing.</p>';
+            });
+            return;
+        }
 
-    // 3. Render Experience
-    renderExperience(data.experiences);
+        // 1. Render Profile Info (Hero & Global)
+        renderProfile(data.profile);
 
-    // 4. Render Publications
-    renderPublications(data.publications);
+        // 2. Render About Section
+        renderAbout(data.about);
 
-    // 5. Render Skills & Update projectData for modals
-    renderSkills(data.skills);
+        // 3. Render Experience
+        renderExperience(data.experiences);
 
-    // 6. Render Awards & Certifications
-    renderAwards(data.awards);
+        // 4. Render Publications
+        renderPublications(data.publications);
 
-    // Final Sync: Ensure all new content is revealed as the user scrolls
-    refreshAnimations();
+        // 5. Render Skills & Update projectData for modals
+        renderSkills(data.skills);
+
+        // 6. Render Awards & Certifications
+        renderAwards(data.awards);
+
+        // Final Sync: Ensure all new content is revealed as the user scrolls
+        refreshAnimations();
+    } catch (error) {
+        console.error('Fatal error during CMS initialization:', error);
+        document.querySelectorAll('.loading').forEach(el => {
+            el.innerHTML = '<p class="error">An unexpected error occurred. Please refresh the page.</p>';
+        });
+    }
 }
 
 /**
@@ -107,19 +124,6 @@ function renderProfile(profile) {
         profileImg.src = window.CMS.urlFor(profile.profileImage);
     }
 
-    // Update social links if provided
-    const socialLinks = {
-        'linkedin': profile.linkedinUrl,
-        'graduation-cap': profile.googleScholarUrl,
-        'twitter': profile.twitterUrl,
-        'github': profile.githubUrl
-    };
-
-    const contactMethods = document.querySelector('.contact-methods');
-    if (contactMethods && profile.email) {
-        // We could rebuild this dynamically if needed
-    }
-
     // Update Services List
     const servicesList = document.getElementById('cms-services-list');
     if (servicesList && profile.additionalServices) {
@@ -130,23 +134,26 @@ function renderProfile(profile) {
 }
 
 function renderAbout(about) {
-    if (!about || !about.paragraphs) return;
-
     const container = document.getElementById('cms-about-content');
-    if (container) {
-        container.innerHTML = about.paragraphs
-            .sort((a, b) => a.order - b.order)
-            .map(p => `<p>${p.text}</p>`)
-            .join('');
+    if (!container) return;
+
+    if (!about || !about.paragraphs || about.paragraphs.length === 0) {
+        container.innerHTML = '<p>Content coming soon. I am currently updating my profile.</p>';
+        return;
     }
+
+    container.innerHTML = about.paragraphs
+        .sort((a, b) => a.order - b.order)
+        .map(p => `<p>${p.text}</p>`)
+        .join('');
 }
 
 function renderExperience(experiences) {
     const container = document.getElementById('cms-experience-grid');
-    if (!container || !experiences) return;
+    if (!container) return;
 
-    if (experiences.length === 0) {
-        container.innerHTML = '<p class="no-data">No experience items found.</p>';
+    if (!experiences || experiences.length === 0) {
+        container.innerHTML = '<p class="no-data">Professional experience details coming soon.</p>';
         return;
     }
 
@@ -163,10 +170,10 @@ function renderExperience(experiences) {
 
 function renderPublications(publications) {
     const container = document.getElementById('cms-publications-list');
-    if (!container || !publications) return;
+    if (!container) return;
 
-    if (publications.length === 0) {
-        container.innerHTML = '<p class="no-data">No publications found.</p>';
+    if (!publications || publications.length === 0) {
+        container.innerHTML = '<p class="no-data">Publications and research works are currently being indexed.</p>';
         return;
     }
 
@@ -186,7 +193,12 @@ function renderPublications(publications) {
 
 function renderSkills(skills) {
     const container = document.getElementById('cms-skills-container');
-    if (!container || !skills) return;
+    if (!container) return;
+
+    if (!skills || skills.length === 0) {
+        container.innerHTML = '<p class="no-data">Skills and technical expertise coming soon.</p>';
+        return;
+    }
 
     // Build internal projectData for the showProjects() function
     projectData = {};
