@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Nwanosike Chinonso Amos - Economist, Policy Researcher, and Data Analyst specializing in economic policy analysis and development research.">
+    <title>Nwanosike Chinonso Amos | Economist & Policy Researcher</title>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://chinonso-web.vercel.app/">
+    <meta property="og:title" content="Nwanosike Chinonso Amos | Economist & Policy Researcher">
+    <meta property="og:description"
+        content="Economist, Policy Researcher, and Data Analyst specializing in development research and economic policy analysis.">
+    <meta property="og:image"
+        content="https://res.cloudinary.com/dttoqt6w7/image/upload/v1765420304/Chinonso_Amos_s1uv1m.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Nwanosike Chinonso Amos | Economist & Policy Researcher">
+    <meta property="twitter:description"
+        content="Economist, Policy Researcher, and Data Analyst specializing in development research and economic policy analysis.">
+    <meta property="twitter:image"
+        content="https://res.cloudinary.com/dttoqt6w7/image/upload/v1765420304/Chinonso_Amos_s1uv1m.png">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- External Libraries -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <!-- Sanity Client CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@sanity/client@3.2.0/dist/index.browser.js"></script>
+    <script src="sanityClient.js"></script>
+</head>
+
+<body>
+    <!-- Premium Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo"></a>
+            <div class="nav-toggle" id="navToggle">
+                <span></span><span></span><span></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact" class="nav-cta">Contact</a></li>
+                <li>
+                    <button class="theme-toggle" id="themeToggle" title="Toggle Theme">
+                        <i data-lucide="sun" class="sun-icon"></i>
+                        <i data-lucide="moon" class="moon-icon"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Hero Section -->
+    <header id="home" class="hero">
+        <div id="particles-js"></div>
+        <div class="hero-content container">
+            <div class="hero-info">
+                <div class="profile-left">
+                    <img src="https://res.cloudinary.com/dttoqt6w7/image/upload/v1765420304/Chinonso_Amos_s1uv1m.png"
+                        alt="Nwanosike Chinonso Amos" class="profile-img">
+                </div>
+                <h1 class="hero-title" id="cms-full-name">Nwanosike Chinonso Amos</h1>
+                <p class="hero-subtitle" id="cms-hero-title">Economist | Policy Researcher | Data Analyst | M&E
+                    Specialist</p>
+                <p class="hero-tagline" id="cms-tagline">I am an emerging economist with a strong background in economic
+                    policy
+                    analysis,
+                    fiscal governance, trade, and development research. My work focuses on generating evidence-based
+                    insights that support sound policymaking, institutional strengthening, and inclusive economic
+                    growth
+                    in Nigeria and Africa.</p>
+
+                <div class="hero-btns">
+                    <button id="heroViewCvBtn" class="btn secondary">Request CV Access <i
+                            data-lucide="lock"></i></button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="about-section section-padding">
+        <div class="container">
+            <div class="section-header">
+                <span class="sub-title">Who I Am</span>
+                <h2 class="title">About Me</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text-card glass" id="cms-about-content">
+                    <p>Loading about information...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience & Projects -->
+    <section id="experience" class="experience-section section-padding bg-alt">
+        <div class="container">
+            <div class="section-header center">
+                <span class="sub-title">My Journey</span>
+                <h2 class="title">Selected Experience & Projects</h2>
+            </div>
+
+            <div class="experience-grid" id="cms-experience-grid">
+                <!-- Data will be injected here -->
+                <div class="exp-card glass loading">Loading experience...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications -->
+    <section id="publications" class="publications-section section-padding">
+        <div class="container">
+            <div class="section-header">
+                <span class="sub-title">Writing</span>
+                <h2 class="title">Publications & Research</h2>
+            </div>
+            <div class="pub-intro">
+                <p>My research and writing focus on empirical economic analysis and policy relevant issues in
+                    Nigeria
+                    and developing economies.</p>
+            </div>
+            <div class="pub-list" id="cms-publications-list">
+                <!-- Data will be injected here -->
+                <div class="pub-item glass loading">Loading publications...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills-section section-padding bg-alt">
+        <div class="container">
+            <div class="section-header center">
+                <span class="sub-title">Capabilities</span>
+                <h2 class="title">Skills & Expertise</h2>
+            </div>
+
+            <div class="skills-container" id="cms-skills-container">
+                <!-- Data will be injected here -->
+                <p>Loading skills...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Recognition Section -->
+    <section id="milestones" class="events-section section-padding">
+        <div class="container">
+            <div class="section-header">
+                <span class="sub-title">Professional Recognition</span>
+                <h2 class="title">Trainings, Awards & Certifications</h2>
+            </div>
+            <div class="events-grid" id="cms-awards-grid">
+                <!-- Data will be injected here -->
+                <div class="event-card glass">Loading awards...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CV Section -->
+    <section class="cv-section section-padding">
+        <div class="container">
+            <div class="cv-card glass">
+                <div class="cv-info">
+                    <h2>Ready to review my full profile?</h2>
+                    <p>Download my comprehensive CV covering education, certifications, and professional
+                        engagements.
+                    </p>
+                </div>
+                <div class="cv-actions">
+                    <button id="footerViewCvBtn" class="btn primary">Request CV Access <i
+                            data-lucide="lock"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <footer id="contact" class="contact-section section-padding">
+        <div class="container">
+            <div class="section-header">
+                <span class="sub-title">Connect</span>
+                <h2 class="title">Get In Touch</h2>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <p>I welcome opportunities for research collaboration, data analysis, policy consulting, and
+                        academic engagement.</p>
+                    <div class="contact-methods">
+                        <a href="mailto:chinonso.nca@gmail.com" class="contact-item">
+                            <i data-lucide="mail"></i>
+                            <span>chinonso.nca@gmail.com</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/chinonso-nwanosike-918351232" target="_blank"
+                            class="contact-item">
+                            <i data-lucide="linkedin"></i>
+                            <span>LinkedIn Profile</span>
+                        </a>
+                        <a href="https://scholar.google.com/citations?hl=en&view_op=list_works&authuser=1&gmla=APjjwuZki1CuvQozjgaSv-dkcUIRMxs6LDiEwt7KyJTIYyEJ4eS0ywvH4pCzaABGnOz9FNMycufkbeQK6hRMO4DGJLovhV_PvZjy8i-EGgJb&user=ei_Fy3cAAAAJ"
+                            target="_blank" class="contact-item">
+                            <i data-lucide="graduation-cap"></i>
+                            <span>Google Scholar</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-form-dummy glass">
+                    <h3>Additional Services</h3>
+                    <ul id="cms-services-list">
+                        <li>Video Editing</li>
+                        <li>Transcription (Audio/Video)</li>
+                        <li>Academic Engagement</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Fullscreen Project View (Inner Page Effect) -->
+    <div id="projectOverlay" class="project-overlay">
+        <div class="overlay-close" id="closeOverlay"><i data-lucide="x"></i></div>
+        <div class="overlay-content container">
+            <h2 id="overlayTitle">Project Title</h2>
+            <div class="overlay-graphic" id="overlayGraphic">
+                <!-- Dynamic Content -->
+            </div>
+            <div class="overlay-desc" id="overlayDesc">
+                <!-- Dynamic Content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop">
+        <i data-lucide="chevron-up"></i>
+    </button>
+
+    <!-- Access Request Modal -->
+    <div id="accessModal" class="modal">
+        <div class="modal-content glass">
+            <div class="modal-header">
+                <h2>Request CV Access</h2>
+                <span class="close-modal" id="closeModal">&times;</span>
+            </div>
+            <p>Please provide your details to request access to the full CV.</p>
+            <form id="accessForm">
+                <div class="form-group">
+                    <label for="requesterEmail">Email Address</label>
+                    <input type="email" id="requesterEmail" required placeholder="your.email@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="requestReason">Reason for Request</label>
+                    <textarea id="requestReason" required placeholder="e.g. Discussing a potential role..."></textarea>
+                </div>
+                <button type="submit" class="btn primary">Send Request</button>
+                <div id="formStatus" class="form-status"></div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
