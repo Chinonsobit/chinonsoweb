@@ -74,8 +74,8 @@
                     in Nigeria and Africa.</p>
 
                 <div class="hero-btns">
-                    <a href="assets/docs/Chinonso_CV.pdf?v=1.2" class="btn secondary" target="_blank">View CV <i
-                            data-lucide="file-text"></i></a>
+                    <button id="heroViewCvBtn" class="btn secondary">Request CV Access <i
+                            data-lucide="lock"></i></button>
                 </div>
             </div>
         </div>
@@ -113,7 +113,7 @@
                 <h2 class="title">Selected Experience & Projects</h2>
             </div>
 
-            <div class="experience-grid">
+            <div class="experience-grid" id="dyn-experience">
                 <div class="exp-card glass">
                     <div class="exp-header">
                         <span class="exp-comp">Preston Consults Limited</span>
@@ -156,7 +156,7 @@
                 <p>My research and writing focus on empirical economic analysis and policy relevant issues in Nigeria
                     and developing economies.</p>
             </div>
-            <div class="pub-list">
+            <div class="pub-list" id="dyn-publications">
                 <div class="pub-item glass">
                     <div class="pub-icon"><i data-lucide="file-text"></i></div>
                     <div class="pub-info">
@@ -301,8 +301,8 @@
                     </p>
                 </div>
                 <div class="cv-actions">
-                    <a href="assets/docs/Chinonso_CV.pdf?v=1.2" class="btn primary" target="_blank">Download CV (PDF) <i
-                            data-lucide="download"></i></a>
+                    <button id="footerViewCvBtn" class="btn primary">Request CV Access <i
+                            data-lucide="lock"></i></button>
                 </div>
             </div>
         </div>
@@ -369,6 +369,29 @@
     <button class="scroll-top" id="scrollTop">
         <i data-lucide="chevron-up"></i>
     </button>
+
+    <!-- Access Request Modal -->
+    <div id="accessModal" class="modal">
+        <div class="modal-content glass">
+            <div class="modal-header">
+                <h2>Request CV Access</h2>
+                <span class="close-modal" id="closeModal">&times;</span>
+            </div>
+            <p>Please provide your details to request access to the full CV.</p>
+            <form id="accessForm">
+                <div class="form-group">
+                    <label for="requesterEmail">Email Address</label>
+                    <input type="email" id="requesterEmail" required placeholder="your.email@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="requestReason">Reason for Request</label>
+                    <textarea id="requestReason" required placeholder="e.g. Discussing a potential role..."></textarea>
+                </div>
+                <button type="submit" class="btn primary">Send Request</button>
+                <div id="formStatus" class="form-status"></div>
+            </form>
+        </div>
+    </div>
 
     <script src="script.js"></script>
     <script>

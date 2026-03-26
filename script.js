@@ -284,9 +284,56 @@ if (accessForm) {
     };
 }
 
+/* --- Dynamic Content Fetching --- */
+async function initDynamicPortfolio() {
+    try {
+        const res = await fetch('/api/content');
+        if (!res.ok) return;
+        const data = await res.json();
+
+        if (data.experiences && data.experiences.length > 0) {
+            const expDiv = document.getElementById('dyn-experience');
+            if (expDiv) expDiv.innerHTML = data.experiences.map(exp => `
+                <div class="exp-card glass fade-up">
+                    <div class="exp-header">
+                        <span class="exp-comp">${exp.subtitle || ''}</span>
+                        <span class="exp-role">${exp.title}</span>
+                    </div>
+                    <p>${exp.desc}</p>
+                </div>
+            `).join('');
+        }
+
+        if (data.publications && data.publications.length > 0) {
+            const pubDiv = document.getElementById('dyn-publications');
+            if (pubDiv) pubDiv.innerHTML = data.publications.map(pub => `
+                <div class="pub-item glass fade-up">
+                    <div class="pub-icon"><i data-lucide="${pub.icon || 'file-text'}"></i></div>
+                    <div class="pub-info">
+                        <h3>${pub.title}</h3>
+                        <p>${pub.desc}</p>
+                        ${pub.fileUrl ? `<a href="${pub.fileUrl}" class="pub-link" target="_blank">Download File <i data-lucide="download"></i></a>` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        if (data.awards && data.awards.length > 0) {
+            projectData['awards'].projects = data.awards.map(a => ({ name: a.title, link: a.fileUrl || '#' }));
+        }
+
+        if (window.lucide) window.lucide.createIcons();
+        if (window.sr) ScrollReveal().sync();
+    } catch (e) {
+        console.error('Failed to load dynamic content', e);
+    }
+}
+
 /* --- Visual Enhancements Initialization --- */
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    initDynamicPortfolio();
 
     /* Typed.js Removed */
 
